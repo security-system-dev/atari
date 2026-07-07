@@ -47,14 +47,21 @@
     <main id="booking" class="max-w-7xl mx-auto px-4 md:px-8 pb-24">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             
-            <!-- KOLOM KIRI: Kalender Jadwal Cal.com -->
+            <!-- KOLOM KIRI: Kalender Jadwal Cal.com (Menggunakan Iframe Stabil) -->
             <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-[#E6DFD5]">
                 <h2 class="text-xl font-serif tracking-wide mb-2">1. Cek Ketersediaan Jadwal</h2>
                 <p class="text-xs text-[#8C7A6B] mb-6">Silakan tentukan slot tanggal dan waktu pengerjaan yang Anda inginkan.</p>
                 
-                <!-- CONTAINER EMBED CAL.COM -->
-                <div id="cal-inline-embed" class="w-full overflow-hidden rounded-xl border border-[#E6DFD5]" style="height: 680px;">
-                    <!-- Widget Kalender Cal.com akan otomatis terisi di sini -->
+                <!-- IFRAME CAL.COM -->
+                <div class="w-full overflow-hidden rounded-xl border border-[#E6DFD5]" style="height: 680px;">
+                    <iframe 
+                        src="https://app.cal.com/atarihenna/booked" 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        style="border: none;"
+                        allowfullscreen>
+                    </iframe>
                 </div>
                 
                 <p class="text-xs text-[#A38A75] mt-3 italic">*Pilih waktu yang tersedia sebelum mengisi formulir konfirmasi di sebelah kanan.</p>
@@ -85,32 +92,6 @@
     <footer class="bg-[#2C2623] text-[#FAF6F0] text-center py-8 text-xs tracking-widest uppercase opacity-90">
         &copy; 2026 Atari Henna & Nails. All Rights Reserved.
     </footer>
-
-    <!-- SKRIP INTEGRASI CAL.COM YANG SUDAH DIPERBAIKI -->
-    <script type="text/javascript">
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; C.Cal = C.Cal || function () { let am = arguments; if (!am.length) { return; } p(C.Cal, am); }; C.Cal.q = C.Cal.q || []; const s = L.createElement(A); s.async = 1; s.src = "https://app.cal.com/embed/embed.js"; const n = L.getElementsByTagName(A)[0]; n.parentNode.insertBefore(s, n); })(window, "script", document);
-    
-      // Inisialisasi widget tanpa konflik namespace
-      Cal("init", {origin:"https://app.cal.com"});
-    
-      // Memanggil link spesifik Anda: atarihenna/booked
-      Cal("inline", {
-        elementOrSelector: "#cal-inline-embed",
-        calLink: "atarihenna/booked",
-        config: {"layout":"month_view"}
-      });
-    
-      // Mengubah warna tombol di dalam kalender agar serasi dengan tema cokelat premium (#2C2623)
-      Cal("ui", {
-        "styles": {
-          "branding": {
-            "brandColor": "#2C2623" 
-          }
-        },
-        "hideEventTypeDetails": false,
-        "layout": "month_view"
-      });
-    </script>
 
 </body>
 </html>
