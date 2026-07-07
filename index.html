@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atari Henna & Nails | Premium Booking</title>
+    <!-- Tailwind CSS untuk kemudahan visual -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts untuk kesan premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -22,6 +24,7 @@
 </head>
 <body class="antialiased">
 
+    <!-- Header / Navbar Minimalis -->
     <header class="py-6 px-8 max-w-7xl mx-auto flex justify-between items-center border-b border-[#E6DFD5]">
         <div class="text-2xl font-serif tracking-widest uppercase font-medium">Atari</div>
         <a href="#booking" class="bg-[#2C2623] text-[#FAF6F0] px-6 py-2.5 text-sm tracking-wider uppercase hover:bg-[#4A3F3A] transition duration-300">
@@ -29,6 +32,7 @@
         </a>
     </header>
 
+    <!-- Hero Section -->
     <section class="max-w-4xl mx-auto text-center py-20 px-4">
         <span class="text-xs uppercase tracking-[0.2em] text-[#A38A75] font-medium block mb-3">Eksklusif & Profesional</span>
         <h1 class="text-4xl md:text-6xl font-serif font-light tracking-wide leading-tight mb-6">
@@ -39,35 +43,34 @@
         </p>
     </section>
 
+    <!-- Section Utama: Kalender & Form -->
     <main id="booking" class="max-w-7xl mx-auto px-4 md:px-8 pb-24">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             
+            <!-- KOLOM KIRI: Kalender Jadwal Cal.com -->
             <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-[#E6DFD5]">
                 <h2 class="text-xl font-serif tracking-wide mb-2">1. Cek Ketersediaan Jadwal</h2>
                 <p class="text-xs text-[#8C7A6B] mb-6">Silakan lihat slot tanggal dan waktu yang masih kosong di bawah ini.</p>
                 
-                <div class="w-full overflow-hidden rounded-xl border border-[#E6DFD5]" style="height: 600px;">
-                    <iframe 
-                        src="https://calendar.google.com/calendar/embed?src=en.indonesian%23holiday%40group.v.calendar.google.com&ctz=Asia%2FJakarta&mode=WEEK" 
-                        style="border: 0" 
-                        width="100%" 
-                        height="100%" 
-                        frameborder="0" 
-                        scrolling="no">
-                    </iframe>
+                <!-- CONTAINER EMBDED CAL.COM -->
+                <div id="cal-inline-embed" class="w-full overflow-hidden rounded-xl border border-[#E6DFD5]" style="min-height: 620px;">
+                    <!-- Kalender Cal.com akan muncul di sini secara otomatis -->
                 </div>
-                <p class="text-xs text-[#A38A75] mt-3 italic">*Catatan internal & update slot akan diperbarui secara berkala oleh admin.</p>
+                
+                <p class="text-xs text-[#A38A75] mt-3 italic">*Pilih waktu yang tersedia sebelum mengisi formulir konfirmasi.</p>
             </div>
 
+            <!-- KOLOM KANAN: Form Google Apps Script Anda -->
             <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-[#E6DFD5]">
                 <h2 class="text-xl font-serif tracking-wide mb-2">2. Isi Formulir Pemesanan</h2>
                 <p class="text-xs text-[#8C7A6B] mb-6">Lengkapi data diri Anda untuk mengunci slot jadwal yang Anda pilih.</p>
                 
+                <!-- IFRAME FORM ANDA -->
                 <div class="w-full overflow-hidden rounded-xl">
                     <iframe 
                         src="https://script.google.com/macros/s/AKfycbxFU_FBDBdbMQ9vA5XQn9wF2u6ildR6yRBShISId3EKnPwtAnkgHfNZ9twchgyzXgpn/exec" 
                         width="100%" 
-                        height="600px" 
+                        height="620px" 
                         frameborder="0" 
                         style="border: none;"
                         allowfullscreen>
@@ -78,9 +81,37 @@
         </div>
     </main>
 
+    <!-- Footer -->
     <footer class="bg-[#2C2623] text-[#FAF6F0] text-center py-8 text-xs tracking-widest uppercase opacity-90">
         &copy; 2026 Atari Henna & Nails. All Rights Reserved.
     </footer>
+
+    <!-- SKRIP INTEGRASI CAL.COM -->
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; C.Cal = C.Cal || function () { let am = arguments; if (!am.length) { return; } p(C.Cal, am); }; C.Cal.q = C.Cal.q || []; const s = L.createElement(A); s.async = 1; s.src = "https://app.cal.com/embed/embed.js"; const n = L.getElementsByTagName(A)[0]; n.parentNode.insertBefore(s, n); })(window, "script", document);
+    
+      Cal("init", "booking", {origin:"https://app.cal.com"});
+    
+      /* 
+         PENTING: Ganti "richard/quick-chat" di bawah ini dengan 
+         "username-anda/event-slug-anda" dari akun Cal.com Anda sendiri.
+      */
+      Cal.inline("cal-inline-embed", {
+        calLink: "richard/quick-chat", 
+        config: {"layout":"month_view"}
+      });
+    
+      // Kostumisasi warna agar senada dengan tema premium Atari Henna
+      Cal("ui", {
+        "styles": {
+          "branding": {
+            "brandColor": "#2C2623" 
+          }
+        },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+    </script>
 
 </body>
 </html>
